@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+
+const obj = {
+    x: 1,
+    y: 2,
+    add(){
+        return this.x + this.y;
+    },
+    substract: function() {
+        return this.x - this.y;
+    },
+    multi: () => { //doesn't have this keyword
+        console.log(this);
+        console.log(this.x, this.y);
+        return this.x * this.y;
+    }
+}
+
+console.log(obj.add());
+console.log(obj.substract());
+console.log(obj.multi());
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
