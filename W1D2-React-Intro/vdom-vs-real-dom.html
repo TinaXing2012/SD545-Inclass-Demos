@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <script type="text/javascript" src="./libraries/react.development.js"></script>
+    <script type="text/javascript" src="./libraries/react-dom.development.js"></script>
+    <script type="text/javascript" src="./libraries/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+
+    <script type="text/babel">
+
+        const vDOM = (
+            <h1 id='title'>
+                <span>MSD 545 WAD1</span>
+            </h1>
+        )
+
+        const root = ReactDOM.createRoot(document.getElementById('container'));
+        root.render(vDOM);
+
+        console.log(typeof vDOM);
+        console.log(vDOM instanceof Object);
+
+        const realDOM = document.getElementById('container');
+
+        debugger;
+
+    </script>
+
+</body>
+
+</html>

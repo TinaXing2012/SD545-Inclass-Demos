@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <!--MIME type-->
+    <script type="text/javascript" src="./libraries/react.development.js"></script>
+    <script type="text/javascript" src="./libraries/react-dom.development.js"></script>
+    <script type="text/javascript" src="./libraries/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+
+    <script type="text/babel">
+
+        // const vDOM = <h1>Hello World</h1>; //JSX
+        // const vDOM = React.createElement('h1', null, 'Hello World!!!!!');
+        // const vDOM = <h1 id='title'><span>Hello World</span></h1>;
+        // const spanVDom = React.createElement('span', null, 'Hello World!!!!');
+        // const vDOM = React.createElement('h1', {id: 'title'}, spanVDom);
+
+        const fruit = 'strawberry';
+        const vDOM = (
+            <ul>
+                    <li>{fruit}</li>
+                    <li>orange</li>
+                    <li>Apple</li>
+            </ul>
+        );
+
+        console.log(typeof vDOM);
+
+        const root = ReactDOM.createRoot(document.getElementById('container'));
+        root.render(vDOM);
+
+    </script>
+
+</body>
+
+</html>
