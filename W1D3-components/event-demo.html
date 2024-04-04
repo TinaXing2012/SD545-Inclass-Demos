@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main">
+        <div>Hello</div>
+        <div id="content">
+            <ul>
+                <li>Banana</li>
+                <li id="item2">Apple</li>
+                <li>Orange</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('main').onclick = (en) => {
+            console.log('main...', e);
+        };
+
+        document.getElementById('content').onclick = () => {
+            console.log('content...');
+        };
+
+        document.getElementById('item2').onclick = () => {
+            console.log('item2...');
+        };
+
+
+    </script>
+</body>
+
+</html>
