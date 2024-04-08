@@ -1,33 +1,37 @@
-import React, { useEffect, useState } from 'react'
-
-function Counter() {
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      console.log('inside setInterval: ', counter);
-      setCounter(counter + 1);
-    }, 1000);
-    return () => {
-      clearInterval(id);
-    }
-  }, [counter])
- 
-
-  return (
-    <div>{counter}</div>
-  )
-}
-
+import React, { useState } from 'react'
+const defaultUserList = [
+  {
+    id: 1,
+    name: 'John',
+    age: 19
+  },
+  {
+    id: 2,
+    name: 'Smith',
+    age: 20
+  },
+  {
+    id: 3,
+    name: 'Edward',
+    age: 29
+  }
+]
 
 export default function App() {
-  const [show, setShow] = useState(true);
+  const [users, setUsers] = useState(defaultUserList);
+
+  const add = () => {
+    setUsers([{id: 4, name: 'JJ', age: 2}, ...users]);
+  }
 
   return (
-    <>
-      {show && <Counter />}
-      <button onClick={() => setShow(!show)}>Toggle Counter Component</button>
-    </>
-
+    <div>
+      <ul>
+        {users.map((user, index) => (
+          <li key={user.id}>{user.name}, {user.age} <input /></li>
+        ))}
+      </ul>
+      <button onClick={add}>Add a new Person</button>
+    </div>
   )
 }
