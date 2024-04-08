@@ -1,0 +1,5 @@
+3. Can you embed JavaScript expressions in JSX? If so, how?
+Yes, use curly brace{}
+
+4. How do you write comments in JSX?
+{/*This is a comment*/}
