@@ -11,6 +11,10 @@ import { useEffect, useState } from 'react';
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  const addNewTodo = (newTodo: Todo) => {
+    setTodos([...todos, newTodo]);
+  }
+
   useEffect(() => {
     async function getTodos() {
       const response = await fetch('http://localhost:9000/todos');
@@ -23,7 +27,7 @@ function App() {
   return (
     <div className="todo-container">
       <div className="todo-wrap">
-        <Header />
+        <Header onAddNewTodo={addNewTodo}/>
         <List todos={todos}/>
         <Footer />
       </div>
