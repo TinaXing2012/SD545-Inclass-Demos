@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import axios from 'axios';
 import Product from '../types/product';
-import productService from '../apis/services/product.service';
 
 type Props = {
     onAddNewProd: (prod: Product) => void;
@@ -23,7 +22,7 @@ export default function AddProduct(props: Props) {
 
     const submitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const response = await productService.addNewProduct({title, price, description});
+        const response = await axios.post('http://localhost:8000/products', {title, price, description});
         console.log(response);
         if(response.status === 201){
             onAddNewProd(response.data);

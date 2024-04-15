@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductList from './components/product-list';
 import AddProduct from './components/add-product';
-import productService from './apis/services/product.service';
 import Product from './types/product';
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
 
   useEffect(() => {
     async function getProducts() {
-      const response = await productService.getProducts();
+      const response = await axios.get('http://localhost:8000/products');
       setProducts(response.data);
     }
     getProducts();
