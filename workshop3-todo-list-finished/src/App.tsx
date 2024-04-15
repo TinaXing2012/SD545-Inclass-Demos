@@ -24,6 +24,14 @@ function App() {
     setTodos(todos.filter(todo => todo.id !== id));
   }
 
+  const updateAll = (value: boolean) => {
+    setTodos(todos.map(todo => ({...todo, done: value})))
+  }
+
+  const deleteFinishedTodos = () => {
+    setTodos(todos.filter(todo => !todo.done));
+  }
+
   useEffect(() => {
     async function getTodos() {
       const response = await fetch('http://localhost:9000/todos');
@@ -38,7 +46,7 @@ function App() {
       <div className="todo-wrap">
         <Header onAddNewTodo={addNewTodo}/>
         <List todos={todos} onUpdateTodo={updateTodo} onDeleteTodoById={deleteTodoById}/>
-        <Footer todos={todos}/>
+        <Footer todos={todos} onUpdateAll={updateAll} onDeleteFinishedTodos={deleteFinishedTodos}/>
       </div>
     </div>
   );

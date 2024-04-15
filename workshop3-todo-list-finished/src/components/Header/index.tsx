@@ -14,8 +14,9 @@ export default function Header(props: Props) {
 
   const addTodo = (e: KeyboardEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
-    if (value.trim()) {
-      if(e.key === 'Enter'){
+
+    if (e.key === 'Enter') {
+      if (value.trim()) {
         onAddNewTodo({
           id: nanoid(),
           name: value,
@@ -23,16 +24,16 @@ export default function Header(props: Props) {
         });
         e.currentTarget.value = '';
         e.currentTarget.focus();
+      } else {
+        alert('Task cannot be empty');
       }
-    } else {
-      alert('Task cannot be empty');
     }
   }
 
 
   return (
     <div className="todo-header">
-      <input type="text" placeholder="Enter task name!!!!" onKeyUp={addTodo} />
+      <input type="text" placeholder="Enter task name!!!!" onKeyDown={addTodo} />
     </div>
   )
 }
