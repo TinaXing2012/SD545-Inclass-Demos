@@ -1,25 +1,28 @@
-import { ChangeEvent, useReducer, useRef, useState } from "react"
 import axios from "axios";
-import PubSub from 'pubsub-js';
+import { ChangeEvent, useReducer, useRef, useState } from "react"
 import User from "../../types/user";
 import SearchReponse from "../../types/search-response";
 
+type Props = {
+    onSetSearchResponse: (value: SearchReponse) => void;
+}
 
-export default function Search() {
+export default function Search(props: Props) {
+    const { onSetSearchResponse } = props;
 
     const inputRef = useRef<HTMLInputElement>(null);
 
     const search = async () => {
-        PubSub.publish('sd545', { isFirst: false, isLoading: true, isError: false, users: [] });
+        onSetSearchResponse({ isFirst: false, isLoading: true, isError: false, users: [] });
         try {
             const response = await axios.get(`https://api.github.com/search/users?q=${inputRef.current!.value}`);
             if (response.status === 200) {
-                PubSub.publish('sd545', { isFirst: false, isLoading: false, isError: false, users: response.data.items });
+                onSetSearchResponse({ isFirst: false, isLoading: false, isError: false, users: response.data.items });
             } else {
-                PubSub.publish('sd545', { isFirst: false, isLoading: false, isError: true, users: [] });
+                onSetSearchResponse({ isFirst: false, isLoading: false, isError: true, users: [] });
             }
         } catch (e) {
-            PubSub.publish('sd545', { isFirst: false, isLoading: false, isError: true, users: [] });
+            onSetSearchResponse({ isFirst: false, isLoading: false, isError: true, users: [] });
         }
 
     }

@@ -5,12 +5,17 @@ import User from "./types/user";
 import SearchReponse from "./types/search-response";
 
 export default function App() {
-   
+    const [searchResponse, setSearchResponse] = useState<SearchReponse>({
+        isFirst: true,
+        isLoading: false,
+        isError: false,
+        users: []
+    });
 
     return (
         <div className="container">
-            <Search />
-            <List /> 
+            <Search onSetSearchResponse={setSearchResponse} />
+            <List {...searchResponse}/> 
         </div>
     )
 }
