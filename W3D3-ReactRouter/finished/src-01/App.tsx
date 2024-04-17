@@ -1,10 +1,17 @@
-import { NavLink, Navigate, Route, Routes, useRoutes } from "react-router-dom";
+import { NavLink, Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import PageNotFound from "./pages/PageNotFound";
 
-import routes from "./routes";
-
+import './App.css';
 
 function App() {
-  const element = useRoutes(routes);
+
+  const changeNavLinkHighlight = (obj: any) => {
+    const { isActive } = obj;
+    return isActive ? 'nav-link highlighted' : 'nav-link';
+  }
+
 
   return (
     <div className="container">
@@ -19,12 +26,12 @@ function App() {
           <div className="d-flex flex-column flex-shrink-0 p-3 border">
             <ul className="nav nav-pills flex-column mb-auto">
               <li className="nav-item">
-                <NavLink to="/home" className='nav-link' >
+                <NavLink to="/home" className={changeNavLinkHighlight}>
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/about" className='nav-link'>
+                <NavLink to="/about" className={changeNavLinkHighlight}>
                   About
                 </NavLink>
               </li>
@@ -32,7 +39,12 @@ function App() {
           </div>
         </div>
         <div className="col-9">
-          {element}
+          <Routes>
+            <Route path="/home" element={<Home />}></Route>
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/" element={<Navigate to="/home" />}></Route>
+            <Route path="*" element={<PageNotFound />}></Route>
+          </Routes>
         </div>
       </div>
     </div>
