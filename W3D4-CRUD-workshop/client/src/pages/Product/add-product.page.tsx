@@ -25,24 +25,27 @@ export default function AddProduct() {
 
   return (
     <div className='mt-5'>
-      <h2>Add a Product</h2>
-      <form>
-        <div className="mb-3">
-          <label htmlFor="title" className="form-label">Title</label>
-          <input className="form-control" id="title" name='title' value={title} onChange={handleInputChange} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="price" className="form-label">Price</label>
-          <input type="numbner" className="form-control" id="price" name='price' value={price} onChange={handleInputChange} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="description" className="form-label">Description</label>
-          <input type="numbner" className="form-control" id="description" name='description' value={description} onChange={handleInputChange} />
-        </div>
 
-        <button type="submit" className="btn btn-primary" onClick={submit}>Submit</button>
-      </form>
-      {flag && <h3>Save Successfully</h3>}
+      {flag ? <><h3>Save Successfully </h3><button className='btn btn-success' onClick={() =>  setFlag(!flag)}>Add one more?</button></> : (
+        <>
+          <h2>Add a Product</h2>
+          <form>
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">Title</label>
+              <input className="form-control" id="title" name='title' value={title} onChange={handleInputChange} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="price" className="form-label">Price</label>
+              <input type="numbner" className="form-control" id="price" name='price' value={price} onChange={handleInputChange} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="description" className="form-label">Description</label>
+              <input type="numbner" className="form-control" id="description" name='description' value={description} onChange={handleInputChange} />
+            </div>
+
+            <button type="submit" className="btn btn-primary" onClick={submit}>Submit</button>
+          </form></>
+      )}
     </div>
   )
 }
