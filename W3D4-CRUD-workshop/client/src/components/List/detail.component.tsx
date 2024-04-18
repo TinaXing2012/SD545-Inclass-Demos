@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PubSub from 'pubsub-js';
 import Product from '../../types/product.type'
+import productService from '../../apis/services/product.service';
 
 export default function Detail() {
     const [product, setProduct] = useState<Product | null>(null);
@@ -14,6 +15,13 @@ export default function Detail() {
         }
     }, []);
 
+    const deleteById = async () => {
+        const response = await productService.deleteProductById(product!.id);
+        if(response.status === 200) {
+            setProduct(null);
+        }
+    }
+
     return (
         <div className="col">
             {product ? (
@@ -22,7 +30,7 @@ export default function Detail() {
                     <p>Product Title: {product.title}</p>
                     <p>Product Price: {product.price}</p>
                     <p>Product Description: {product.description}</p>
-                    <p><button className='btn btn-danger'>Delete</button></p>
+                    <p><button className='btn btn-danger' onClick={deleteById}>Delete</button></p>
                 </>
             ) : <h2>please click a product on left side to see detail</h2>}
         </div>

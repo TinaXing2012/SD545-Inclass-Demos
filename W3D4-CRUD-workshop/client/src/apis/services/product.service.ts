@@ -4,6 +4,11 @@ const getAll = () => {
     return http.get('/products');
 }
 
+const deleteProductById = (id: number) => {
+    return http.delete(`/products/${id}`);
+}
+
 export default {
-    getAll
+    getAll,
+    deleteProductById
 }
