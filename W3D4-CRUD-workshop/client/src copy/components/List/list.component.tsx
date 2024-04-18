@@ -6,16 +6,19 @@ import productService from '../../apis/services/product.service';
 import './List.css';
 import classNames from 'classnames';
 
-type Props = {
-    products: Product[]
-}
-
-export default function List(props: Props) {
-    const { products } = props;
-
+export default function List() {
+    const [products, setProducts] = useState<Product[]>([]);
     const [activeId, setActiveId] = useState<number>(-1);
 
-    const showDetail = (prod: Product) => {
+    useEffect(() => {
+        async function getProducts() {
+            const response = await productService.getAll();
+            setProducts(response.data);
+        }
+        getProducts();
+    }, []);
+
+    const showDetail = (prod: Product, e: MouseEvent<HTMLLIElement>) => {
         PubSub.publish('products', prod);
         setActiveId(prod.id);
     }
@@ -25,8 +28,8 @@ export default function List(props: Props) {
             <ul className="list-group">
                 {products.map(prod => <li
                     key={prod.id}
-                    className={classNames('list-group-item', { highlighted: activeId === prod.id })}
-                    onClick={(e) => showDetail(prod)}
+                    className={classNames('list-group-item', {highlighted: activeId === prod.id})}
+                    onClick={(e) => showDetail(prod, e)}
                 >{prod.title}</li>)}
             </ul>
         </div>

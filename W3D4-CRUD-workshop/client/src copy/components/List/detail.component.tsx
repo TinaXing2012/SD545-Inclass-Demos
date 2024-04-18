@@ -3,12 +3,7 @@ import PubSub from 'pubsub-js';
 import Product from '../../types/product.type'
 import productService from '../../apis/services/product.service';
 
-type Props = {
-    onDeleteProductById: (id: number) => void
-}
-
-export default function Detail(props: Props) {
-    const { onDeleteProductById } = props;
+export default function Detail() {
     const [product, setProduct] = useState<Product | null>(null);
 
     useEffect(() => {
@@ -22,9 +17,8 @@ export default function Detail(props: Props) {
 
     const deleteById = async () => {
         const response = await productService.deleteProductById(product!.id);
-        if (response.status === 200) {
+        if(response.status === 200) {
             setProduct(null);
-            onDeleteProductById(product!.id);
         }
     }
 
