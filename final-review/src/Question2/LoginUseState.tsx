@@ -7,7 +7,6 @@ export default function LoginUseState() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setError('');
         try {
             await new Promise((resolve, reject) => {
                 setTimeout(() => {

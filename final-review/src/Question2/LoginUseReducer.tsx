@@ -64,7 +64,6 @@ export default function LoginUseReducer() {
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // setError('');
         try {
             await new Promise((resolve, reject) => {
                 setTimeout(() => {
